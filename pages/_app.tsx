@@ -5,6 +5,7 @@ import { getCookie, setCookies } from 'cookies-next';
 import Head from 'next/head';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { ThirdwebProvider, ChainId } from '@thirdweb-dev/react';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
@@ -15,6 +16,8 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
     setColorScheme(nextColorScheme);
     setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
   };
+
+  const desiredChainId = ChainId.Rinkeby;
 
   return (
     <>
@@ -27,7 +30,9 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <Component {...pageProps} />
+            <ThirdwebProvider desiredChainId={desiredChainId}>
+              <Component {...pageProps} />
+            </ThirdwebProvider>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
