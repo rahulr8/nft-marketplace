@@ -8,8 +8,7 @@ export function NftList() {
 
   // initialize the SDK and get the NFT Collection module
   // get the contract address (0x...) from your dashboard!
-  const nftCollectionAddress = '0x01BE23585060835E02B77ef475b0Cc51aA1e0709';
-  // const nftCollectionAddress = '0x572f96AE65938A2F5B234143d7F8bcE0e2B94FBb';
+  const nftCollectionAddress = '0x572f96AE65938A2F5B234143d7F8bcE0e2B94FBb';
   const nftCollection = useNFTCollection(nftCollectionAddress);
   console.log('nftCollection', nftCollection);
 
